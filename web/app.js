@@ -1,0 +1,2 @@
+const $=id=>document.getElementById(id); const api=window.REPOGUARD_API_BASE.replace(/\/$/,"");
+$("scan").addEventListener("click",async()=>{const url=$("repo-url").value.trim(); $("msg").textContent="Submitting scan…"; try{const r=await fetch(api+"/scan",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({url})}); const d=await r.json(); if(!r.ok) throw new Error(d.error||"scan submission failed"); location.href="report.html?id="+encodeURIComponent(d.scan_id);}catch(e){$("msg").textContent=String(e.message||e);}});
