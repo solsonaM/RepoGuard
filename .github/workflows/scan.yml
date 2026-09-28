@@ -137,7 +137,7 @@ jobs:
               --scan-id "$SCAN_ID"
           fi
 
-           - name: Commit report on main
+      - name: Commit report on main
         if: always()
         env:
           SCAN_ID: ${{ inputs.scan_id }}
