@@ -137,19 +137,18 @@ jobs:
               --scan-id "$SCAN_ID"
           fi
 
-      - name: Commit report on main
+           - name: Commit report on main
         if: always()
         env:
           SCAN_ID: ${{ inputs.scan_id }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-
           mkdir -p reports
           cp local-work/report/report.json "reports/${SCAN_ID}.json"
-
           git config user.name "RepoGuard Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git add "reports/${SCAN_ID}.json"
           git commit -m "report: ${SCAN_ID}" || true
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push origin HEAD:main
