@@ -1,17 +1,21 @@
 rules:
   - id: repoguard-download-pipe-shell
+    languages: [generic]
     pattern-regex: '(?i)(curl|wget)[^\n|;&]*\|\s*(ba)?sh\b'
     message: "Remote content is piped directly into a shell."
     severity: ERROR
   - id: repoguard-destructive-rm
+    languages: [generic]
     pattern-regex: '(?i)\brm\s+-[rRf]+\s+(\/|~|\$HOME)'
     message: "Destructive recursive deletion."
     severity: ERROR
   - id: repoguard-reverse-shell
+    languages: [generic]
     pattern-regex: '(?i)(/dev/tcp/|bash\s+-i|nc\s+-e|socat[^\n]*exec:)'
     message: "Possible reverse shell."
     severity: ERROR
   - id: repoguard-prompt-injection
+    languages: [generic]
     pattern-regex: '(?i)ignore\s+(all\s+)?previous\s+instructions|disable\s+safety'
     message: "Prompt injection text."
     severity: ERROR
