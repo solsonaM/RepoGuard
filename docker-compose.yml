@@ -11,6 +11,8 @@ services:
       - /tmp
     volumes:
       - ./tests/fixtures:/demo:ro
+      - ./reports:/reports
+
   pages:
     image: nginx:alpine
     ports:

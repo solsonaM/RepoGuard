@@ -41,7 +41,7 @@ Optional local-only behavior test:
 scripts/local_behavior_test.sh /path/to/repository
 
 Hosted deployment:
-Create a free Cloudflare account, create KV, create a fine-grained repository-scoped GitHub token, store it as GITHUB_REPO_TOKEN in the Worker, set web/config.js to the Worker URL, and enable GitHub Pages using the included workflow. Exact steps are in docs/DEPLOY.md.
+Create a free Cloudflare account, create KV, create a fine-grained repository-scoped GitHub token, store it as GITHUB_TOKEN in the Worker, set web/config.js to the Worker URL, and enable GitHub Pages using the included workflow. Exact steps are in docs/DEPLOY.md.
 
 Free-tier design:
 The prototype caps scans per day and per IP. It uses GitHub Actions, GitHub Pages, Cloudflare Workers/KV, open-source scanners, and standard-library Python. There are no paid APIs or required credit cards. Limits and decisions are recorded in docs/DECISIONS.md.

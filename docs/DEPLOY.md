@@ -8,10 +8,10 @@ Create a fine-grained personal access token for only solsonaM/RepoGuard. Give it
 
 3. Worker secret
 From the worker directory, authenticate Wrangler and run:
-wrangler secret put GITHUB_REPO_TOKEN
+wrangler secret put GITHUB_TOKEN
 Paste the token when requested.
 Then run:
-wrangler deploy
+wrangler deploy --env production
 
 4. Frontend
 Edit web/config.js and replace the default local API URL with the deployed Worker URL.
@@ -22,4 +22,4 @@ Open the repository Settings, then Pages, and select GitHub Actions as the deplo
 6. Test
 Open the Worker URL followed by /health. You should receive JSON with status ok. Then submit a public GitHub repository URL through the RepoGuard web page.
 
-Never put GITHUB_REPO_TOKEN, VT_API_KEY, Cloudflare credentials, or another secret into frontend JavaScript or the scanned repository.
+Never put GITHUB_TOKEN, VT_API_KEY, Cloudflare credentials, or another secret into frontend JavaScript or the scanned repository.

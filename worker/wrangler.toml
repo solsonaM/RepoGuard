@@ -6,10 +6,26 @@ workers_dev = true
 [vars]
 DAILY_SCAN_CAP = "8"
 PER_IP_DAILY_CAP = "2"
+LOCAL_UNLIMITED = "true"
 REPO_OWNER = "solsonaM"
 REPO_NAME = "RepoGuard"
 REPORT_BRANCH = "main"
 
 [[kv_namespaces]]
+binding = "REPOGUARD_KV"
+id = "REPLACE_AFTER_CREATING_KV"
+
+[env.production]
+name = "repoguard-api"
+
+[env.production.vars]
+DAILY_SCAN_CAP = "8"
+PER_IP_DAILY_CAP = "2"
+LOCAL_UNLIMITED = "false"
+REPO_OWNER = "solsonaM"
+REPO_NAME = "RepoGuard"
+REPORT_BRANCH = "main"
+
+[[env.production.kv_namespaces]]
 binding = "REPOGUARD_KV"
 id = "REPLACE_AFTER_CREATING_KV"
