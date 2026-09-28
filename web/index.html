@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RepoGuard — Pre-install repository audit</title><link rel="stylesheet" href="styles.css"></head>
+<body><main class="shell"><header><h1>RepoGuard</h1><p>Audit a GitHub repository before you install it.</p></header>
+<section class="card"><label for="repo-url">GitHub repository URL</label><input id="repo-url" type="url" placeholder="https://github.com/owner/repo" autocomplete="off"><button id="scan">Scan repository</button><p id="msg" class="muted"></p></section>
+<section class="grid"><div class="card"><h2>What RepoGuard checks</h2><p>Secrets, malware-like static patterns, auto-run hooks, dependency advisories, archives, binaries, AI-skill prompt injection, and repository reputation signals.</p></div><div class="card"><h2>Security model</h2><p>The target repository is treated as hostile data. RepoGuard never installs, imports, builds, or executes target files during hosted scanning.</p></div></section>
+<footer>No scanner can guarantee the absence of all threats.</footer></main><script src="config.js"></script><script src="app.js"></script></body></html>
