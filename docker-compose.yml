@@ -1,0 +1,21 @@
+services:
+  scanner:
+    build: .
+    image: repoguard-scanner:local
+    command: ["sleep", "infinity"]
+    network_mode: "none"
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs:
+      - /tmp
+    volumes:
+      - ./tests/fixtures:/demo:ro
+  pages:
+    image: nginx:alpine
+    ports:
+      - "8088:80"
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    depends_on:
+      - scanner
