@@ -91,7 +91,7 @@ def run_osv(root: Path) -> tuple[list[Finding], str | None]:
     env=os.environ.copy()
     env.setdefault("XDG_CACHE_HOME", "/osv-cache")
     try:
-        proc=subprocess.run(["osv-scanner","--offline-vulnerabilities","scan","source","-r",".","--format","json"], cwd=root, capture_output=True, text=True, timeout=90, env=env)
+        proc=subprocess.run(["osv-scanner","scan","source","--offline-vulnerabilities","--recursive",".","--format","json"], cwd=root, capture_output=True, text=True, timeout=90, env=env)
     except FileNotFoundError:
         return [], "scanner unavailable: osv-scanner"
     except subprocess.TimeoutExpired:
