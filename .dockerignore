@@ -1,0 +1,8 @@
+.git
+.github
+reports
+web
+worker
+local-work
+__pycache__
+.pytest_cache
