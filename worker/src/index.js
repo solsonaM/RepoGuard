@@ -188,21 +188,21 @@ async function reputation(targetInfo, env) {
       targetInfo.base +
         "/contributors?per_page=100&anon=true",
       env,
-      false
+      true
     );
 
     const stargazers = await githubJson(
       targetInfo.base +
         "/stargazers?per_page=100",
       env,
-      false
+      true
     );
 
     const commits = await githubJson(
       targetInfo.base +
         "/commits?per_page=30",
       env,
-      false
+      true
     );
 
     return {
