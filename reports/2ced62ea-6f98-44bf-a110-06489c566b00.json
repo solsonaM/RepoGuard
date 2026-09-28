@@ -1,0 +1,51 @@
+{
+  "product": "RepoGuard",
+  "schema_version": "1.0",
+  "scan_id": "2ced62ea-6f98-44bf-a110-06489c566b00",
+  "repo_url": "https://github.com/solsonaM/RepoGuard",
+  "commit_sha": "2bb19ddd3fe2e8030590351d0485444115143ae6",
+  "scanned_at": "2026-09-28T10:34:07.923991+00:00",
+  "mode": "hosted-static-analysis",
+  "threshold": "medium",
+  "verdict": "REJECTED",
+  "files_analyzed": 0,
+  "files_total": 0,
+  "all_files_analyzed": false,
+  "checks": [
+    {
+      "check": "URL validation",
+      "status": "passed"
+    },
+    {
+      "check": "Fetch/scanner orchestration",
+      "status": "error",
+      "detail": "static analysis orchestration failed"
+    }
+  ],
+  "file_results": [],
+  "findings": [
+    {
+      "severity": "critical",
+      "file": "<scanner>",
+      "line": 1,
+      "snippet": "static analysis orchestration failed",
+      "rule": "RG-ORCH-001",
+      "explanation": "The repository could not be fully fetched or scanned. The deny-by-default policy therefore rejects it.",
+      "source": "orchestrator"
+    }
+  ],
+  "rejection_reasons": [
+    {
+      "file": "<repository>",
+      "reason": "static analysis orchestration failed"
+    }
+  ],
+  "reputation": {
+    "status": "not_available"
+  },
+  "sandbox": {
+    "status": "not_run"
+  },
+  "outdated": false,
+  "disclaimer": "No scanner can guarantee the absence of all threats. APPROVED means every file was analyzed and no threats were found by the listed checks."
+}
