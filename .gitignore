@@ -6,7 +6,6 @@ __pycache__/
 .pytest_cache/
 .coverage
 local-work/
-reports/*.json
 node_modules/
 .wrangler/
 .DS_Store

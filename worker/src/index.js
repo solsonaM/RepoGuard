@@ -97,7 +97,7 @@ async function githubJson(url, env, authenticated = false) {
   }
 
   const response = await fetch(url, {
-    redirect: "error",
+    redirect: "manual",
     headers
   });
 
@@ -267,7 +267,7 @@ async function triggerWorkflow(scan, env) {
 
   const response = await fetch(url, {
     method: "POST",
-    redirect: "error",
+    redirect: "manual",
 
     headers: {
       "accept": "application/vnd.github+json",

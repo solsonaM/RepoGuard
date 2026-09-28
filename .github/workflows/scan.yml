@@ -28,6 +28,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
       - name: Check out RepoGuard code only
         uses: actions/checkout@v4
@@ -38,38 +39,59 @@ jobs:
       - name: Validate and fetch target as data
         continue-on-error: true
         env:
-          SCAN_URL: \${{ inputs.scan_url }}
-          EXPECTED_SHA: \${{ inputs.expected_sha }}
+          SCAN_URL: ${{ inputs.scan_url }}
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
         run: |
           set +e
           rm -rf local-work
           mkdir -p local-work
-          python -m app.host_fetch --repo-url "$SCAN_URL" --workspace local-work | tee local-work/fetch.json
+
+          python -m app.host_fetch \
+            --repo-url "$SCAN_URL" \
+            --workspace local-work | tee local-work/fetch.json
+
           status=$?
-          if [ "$status" -ne 0 ]; then echo "fetch failed with exit code $status" > local-work/failure.txt; exit "$status"; fi
+
+          if [ "$status" -ne 0 ]; then
+            echo "fetch failed with exit code $status" > local-work/failure.txt
+            exit "$status"
+          fi
+
           python - <<'PY'
-          import json, os, sys
-          d=json.load(open('local-work/fetch.json'))
-          expected=os.environ['EXPECTED_SHA']
-          if d['commit_sha'] != expected:
-              print(f"HEAD changed between intake and fetch: expected {expected}, got {d['commit_sha']}", file=sys.stderr)
+          import json
+          import os
+          import sys
+
+          d = json.load(open("local-work/fetch.json"))
+          expected = os.environ["EXPECTED_SHA"]
+
+          if d["commit_sha"] != expected:
+              print(
+                  f"HEAD changed between intake and fetch: "
+                  f"expected {expected}, got {d['commit_sha']}",
+                  file=sys.stderr,
+              )
               raise SystemExit(2)
           PY
 
       - name: Build scanner image
         continue-on-error: true
         run: |
-          docker build --pull -t repoguard-scanner:ci . || { echo "scanner image build failed" > local-work/failure.txt; exit 1; }
+          docker build --pull -t repoguard-scanner:ci . || {
+            echo "scanner image build failed" > local-work/failure.txt
+            exit 1
+          }
 
       - name: Run scanner with network disabled
         continue-on-error: true
         env:
-          SCAN_URL: \${{ inputs.scan_url }}
-          EXPECTED_SHA: \${{ inputs.expected_sha }}
-          REPUTATION_JSON: \${{ inputs.reputation_json }}
+          SCAN_URL: ${{ inputs.scan_url }}
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          REPUTATION_JSON: ${{ inputs.reputation_json }}
         run: |
           mkdir -p local-work/report
           set +e
+
           docker run --rm --network none \
             -v "$PWD/local-work/repo:/input:ro" \
             -v "$PWD/local-work/report:/output" \
@@ -84,7 +106,9 @@ jobs:
             --threshold medium \
             --with-external \
             --reputation-json "$REPUTATION_JSON"
+
           status=$?
+
           if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then
             echo "scanner failed with exit code $status" > local-work/failure.txt
           fi
@@ -92,27 +116,40 @@ jobs:
       - name: Ensure report exists
         if: always()
         env:
-          SCAN_ID: \${{ inputs.scan_id }}
-          SCAN_URL: \${{ inputs.scan_url }}
-          EXPECTED_SHA: \${{ inputs.expected_sha }}
+          SCAN_ID: ${{ inputs.scan_id }}
+          SCAN_URL: ${{ inputs.scan_url }}
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
         run: |
           mkdir -p local-work/report
+
           if [ ! -s local-work/report/report.json ]; then
             reason="$(cat local-work/failure.txt 2>/dev/null || true)"
-            if [ -z "$reason" ]; then reason="static analysis orchestration failed"; fi
-            python -m app.failure_report --repo-url "$SCAN_URL" --commit-sha "$EXPECTED_SHA" --output local-work/report/report.json --reason "$reason" --scan-id "$SCAN_ID"
+
+            if [ -z "$reason" ]; then
+              reason="static analysis orchestration failed"
+            fi
+
+            python -m app.failure_report \
+              --repo-url "$SCAN_URL" \
+              --commit-sha "$EXPECTED_SHA" \
+              --output local-work/report/report.json \
+              --reason "$reason" \
+              --scan-id "$SCAN_ID"
           fi
 
       - name: Commit report on main
         if: always()
         env:
-          SCAN_ID: \${{ inputs.scan_id }}
+          SCAN_ID: ${{ inputs.scan_id }}
         run: |
           set -euo pipefail
+
           mkdir -p reports
-          cp local-work/report/report.json "reports/\${SCAN_ID}.json"
+          cp local-work/report/report.json "reports/${SCAN_ID}.json"
+
           git config user.name "RepoGuard Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "reports/\${SCAN_ID}.json"
-          git commit -m "report: \${SCAN_ID}" || true
+
+          git add "reports/${SCAN_ID}.json"
+          git commit -m "report: ${SCAN_ID}" || true
           git push origin HEAD:main
