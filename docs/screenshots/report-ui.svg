@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">RepoGuard report page</title>
+  <desc id="desc">Report tied to a commit SHA, with a REJECTED verdict, file statuses, and redacted findings.</desc>
+  <rect width="1280" height="720" fill="#f4f1ea"/>
+  <rect x="80" y="48" width="1120" height="624" rx="20" fill="#fffef9" stroke="#d8d2c6"/>
+  <text x="128" y="112" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700" fill="#171c18">Scan report</text>
+  <text x="128" y="144" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#5c665e">owner/repo@a1b2c3d  ·  report marked current while HEAD matches</text>
+  <rect x="128" y="172" width="160" height="36" rx="18" fill="#8b2e2e"/>
+  <text x="156" y="196" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" fill="#fff8f6">REJECTED</text>
+  <rect x="128" y="232" width="1024" height="88" rx="12" fill="#fffef9" stroke="#d8d2c6"/>
+  <text x="152" y="268" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="600" fill="#171c18">app/config.py</text>
+  <text x="152" y="294" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#8b2e2e">Analyzed - flagged  ·  Gitleaks  ·  aws-access-key  ·  AKI[REDACTED]</text>
+  <rect x="128" y="336" width="1024" height="88" rx="12" fill="#fffef9" stroke="#d8d2c6"/>
+  <text x="152" y="372" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="600" fill="#171c18">README.md</text>
+  <text x="152" y="398" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#2f5f4c">Analyzed - clean</text>
+  <rect x="128" y="440" width="1024" height="88" rx="12" fill="#fffef9" stroke="#d8d2c6"/>
+  <text x="152" y="476" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="600" fill="#171c18">vendor/tool.bin</text>
+  <text x="152" y="502" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#8b2e2e">Rejected - unanalyzable  ·  high-entropy opaque binary</text>
+  <text x="128" y="580" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#5c665e">Required scanners: Semgrep OSS, Gitleaks, OSV-Scanner offline, custom rules, YARA.</text>
+  <text x="128" y="628" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#7a847c">APPROVED requires 100% of files analyzed with no qualifying findings.</text>
+</svg>

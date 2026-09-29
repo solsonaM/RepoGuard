@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">RepoGuard scan page</title>
+  <desc id="desc">Static UI: title, GitHub URL field, Scan repository button, and two explainer cards.</desc>
+  <rect width="1280" height="720" fill="#f4f1ea"/>
+  <rect x="80" y="48" width="1120" height="624" rx="20" fill="#fffef9" stroke="#d8d2c6"/>
+  <text x="128" y="120" font-family="ui-sans-serif, system-ui, sans-serif" font-size="36" font-weight="700" fill="#171c18">RepoGuard</text>
+  <text x="128" y="156" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" fill="#5c665e">Audit a GitHub repository before you install it.</text>
+  <rect x="128" y="200" width="1024" height="168" rx="16" fill="#fffef9" stroke="#d8d2c6"/>
+  <text x="152" y="236" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#5c665e">GitHub repository URL</text>
+  <rect x="152" y="252" width="976" height="44" rx="8" fill="#f4f1ea" stroke="#d8d2c6"/>
+  <text x="168" y="280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#7a847c">https://github.com/owner/repo</text>
+  <rect x="152" y="308" width="196" height="40" rx="8" fill="#171c18"/>
+  <text x="170" y="334" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="600" fill="#f4f1ea">Scan repository</text>
+  <rect x="128" y="396" width="496" height="180" rx="16" fill="#fffef9" stroke="#d8d2c6"/>
+  <rect x="656" y="396" width="496" height="180" rx="16" fill="#fffef9" stroke="#d8d2c6"/>
+  <text x="152" y="440" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="700" fill="#171c18">What RepoGuard checks</text>
+  <text x="152" y="476" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#5c665e">Secrets, malware-like static patterns, auto-run</text>
+  <text x="152" y="498" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#5c665e">hooks, dependency advisories, archives, binaries,</text>
+  <text x="152" y="520" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#5c665e">AI-skill prompt injection, and reputation signals.</text>
+  <text x="680" y="440" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="700" fill="#171c18">Security model</text>
+  <text x="680" y="476" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#5c665e">The target repository is treated as hostile data.</text>
+  <text x="680" y="498" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#5c665e">RepoGuard never installs, imports, builds, or</text>
+  <text x="680" y="520" font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#5c665e">executes target files during hosted scanning.</text>
+  <text x="128" y="628" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#7a847c">No scanner can guarantee the absence of all threats.</text>
+</svg>
